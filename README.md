@@ -9,3 +9,9 @@
  6. We highly value using an _infrastructure as code_ approach to do this.  We use Terraform, but are pretty well-versed in most tools to achieve this.
  7. All the resources provisioned in the cloud provider should be well-configured and locked down.  This means that security groups are in place and there isn't unecessary public access to resources.
 
+Caveats:
+
+1. availability_zones, only in west-2a - could be expanded.
+2. given bigger project would include granular modules, and expanded environments.
+3. staying in free-tier zone on personal aws account. (t2.micro - network performance bottleneck)
+4. us-west-2 is default, also edit variables.tf for keys/access

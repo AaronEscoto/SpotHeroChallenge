@@ -3,13 +3,11 @@ variable "instance_count" { default = "3" }
 resource "aws_instance" "helloSpotHero" {
   ami   = "${lookup(var.amis, var.region)}"
   count = "${var.instance_count}"
-  #availability_zone           = "${var.availability_zones[count.index]}"
-  instance_type               = "t2.micro"
+  #availability_zone          = "${var.availability_zones[count.index]}"
+  instance_type               = "${var.instance_type}"
   key_name                    = "${var.key_name}"
   vpc_security_group_ids      = ["${aws_security_group.web.id}"]
   subnet_id                   = "${aws_subnet.public-subnet-in-us-west-2.id}"
-  associate_public_ip_address = false
-  source_dest_check           = false
   user_data                   = <<-EOF
                   #!/bin/bash
                   yum update -y
@@ -22,7 +20,7 @@ resource "aws_instance" "helloSpotHero" {
   }
 }
 
-resource "aws_elb" "web" {
+resource "aws_elb" "helloSpotHero" {
   name    = "helloSpotHero-elb"
   subnets = "${aws_subnet.public-subnet-in-us-west-2[*].id}"
   # The same availability zone as our instances

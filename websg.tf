@@ -1,5 +1,5 @@
 resource "aws_security_group" "web" {
-  name        = "vpcWeb"
+  name        = "vpc_web"
   description = "Accept incoming connections."
 
   ingress {
@@ -54,6 +54,6 @@ resource "aws_security_group" "web" {
   vpc_id = "${aws_vpc.default.id}"
 
   tags = {
-    Name = "webSg"
+    Name = "web_sg"
   }
 }

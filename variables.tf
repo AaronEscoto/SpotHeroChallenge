@@ -25,6 +25,11 @@ variable "availability_zones" {
   default     = ["us-west-2a", "us-west-2b", "us-west-2c"]
 }
 
+variable "instance_type" {
+  description = "FREEE!!"
+  default = "t2.micro"
+}
+
 variable "key_path" {
   description = "Key path for SSHing into EC2"
   default     = "/Users/aaronescoto/.ssh/aescoto.pem"
