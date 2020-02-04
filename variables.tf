@@ -1,17 +1,17 @@
 provider "aws" {
-  access_key = "AKIARQXYJJ3NAKIF3YFG"
-  secret_key = "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"
+  access_key = "xxxxxxxxxx"
+  secret_key = "xxxxxxxxxx"
   region     = "us-west-2"
 }
 
 variable "access_key" {
   description = "AWS access key"
-  default     = "AKIARQXYJJ3NAKIF3YFG"
+  default     = "xxxxxxxxxxxxxx"
 }
 
 variable "secret_key" {
   description = "AWS secret key"
-  default     = "ztDK2s/gIZ/46xZxL84uZEYtBkNOikZyBm3dnD9e"
+  default     = "xxxxxxxxxxxxxx"
 }
 
 variable "region" {
