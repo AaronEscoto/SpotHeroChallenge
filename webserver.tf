@@ -24,7 +24,7 @@ resource "aws_instance" "helloSpotHero" {
   }
 }
 
-resource "aws_elb" "helloSpotHero" {
+resource "aws_elb" "helloSpotHero-elb" {
   name    = "helloSpotHero-elb"
   subnets = "${aws_subnet.public-subnet-in-us-west-2[*].id}"
   # The same availability zone as our instances
@@ -59,7 +59,7 @@ resource "aws_cloudwatch_metric_alarm" "helloSpotHero-alarm" {
   alarm_description         = "This metric monitors ec2 cpu utilization"
   insufficient_data_actions = []
   dimensions = {
-    LoadBalancer = "${aws_elb.helloSpotHero.arn_suffix}"
+    LoadBalancer = "helloSpotHero"
   }
 
 
