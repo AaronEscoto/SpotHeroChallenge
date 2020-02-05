@@ -1,17 +1,17 @@
 provider "aws" {
-  access_key = "xxxxxxxxxx"
-  secret_key = "xxxxxxxxxx"
+  access_key = "AKIARQXYJJ3NAKIF3YFG"
+  secret_key = "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"
   region     = "us-west-2"
 }
 
 variable "access_key" {
   description = "AWS access key"
-  default     = "xxxxxxxxxxxxxx"
+  default     = "AKIARQXYJJ3NAKIF3YFG"
 }
 
 variable "secret_key" {
   description = "AWS secret key"
-  default     = "xxxxxxxxxxxxxx"
+  default     = "ztDK2s/gIZ/46xZxL84uZEYtBkNOikZyBm3dnD9e"
 }
 
 variable "region" {
@@ -27,7 +27,7 @@ variable "availability_zones" {
 
 variable "instance_type" {
   description = "FREEE!!"
-  default = "t2.micro"
+  default     = "t2.micro"
 }
 
 variable "key_path" {
@@ -59,5 +59,11 @@ variable "amis" {
   description = "Base AMI to launch the instances"
   default = {
     us-west-2 = "ami-04590e7389a6e577c"
+  }
+}
+variable "alarms_email" {
+  description = "Base AMI to launch the instances"
+  default = {
+    alarms_email = "blah@gmail.com"
   }
 }

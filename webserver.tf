@@ -1,4 +1,7 @@
 variable "instance_count" { default = "3" }
+variable warn_threshold { default = 2 }
+variable crit_threshold { default = 1 }
+
 
 resource "aws_instance" "helloSpotHero" {
   ami   = "${lookup(var.amis, var.region)}"
@@ -8,6 +11,7 @@ resource "aws_instance" "helloSpotHero" {
   key_name                    = "${var.key_name}"
   vpc_security_group_ids      = ["${aws_security_group.web.id}"]
   subnet_id                   = "${aws_subnet.public-subnet-in-us-west-2.id}"
+  associate_public_ip_address = true
   user_data                   = <<-EOF
                   #!/bin/bash
                   yum update -y
@@ -40,4 +44,23 @@ resource "aws_elb" "helloSpotHero" {
   }
   # The instances are registered automatically
   instances = "${aws_instance.helloSpotHero[*].id}"
+
+}
+
+resource "aws_cloudwatch_metric_alarm" "helloSpotHero-alarm" {
+  alarm_name                = "helloSpotHero-alarm-CPUUtilization"
+  comparison_operator       = "GreaterThanOrEqualToThreshold"
+  evaluation_periods        = "2"
+  metric_name               = "CPUUtilization"
+  namespace                 = "AWS/EC2"
+  period                    = "120"
+  statistic                 = "Average"
+  threshold                 = "80"
+  alarm_description         = "This metric monitors ec2 cpu utilization"
+  insufficient_data_actions = []
+  dimensions = {
+    LoadBalancer = "${aws_elb.helloSpotHero.arn_suffix}"
+  }
+
+
 }
