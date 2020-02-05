@@ -33,6 +33,8 @@ sequence from the end of this expression, leaving just the inner expression.
 
 didn't quite resolve this one yet.
 7. and aws_cloudwatch_metric_alarm, able to get some alarms set, but not so attached to ELB.
+
 8. call ELB on port 32769 for the "hello world!"
-9. 
+
+9.
 Plan: 18 to add, 0 to change, 0 to destroy.
